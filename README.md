@@ -1,5 +1,6 @@
-# Football_Manager_Simulation
-Football Manager Game
+# Future Manager 20
+
+Future Manager Game 20
 
 
 Current Features
@@ -22,6 +23,7 @@ TO-DO LIST
 - will added 2D Visual match engine
 - will added Player scout system
 - will added Transfer offers for Players 
-- will added game save/load 
+- will added Game save/load 
+- will added Women Players and faces
 
 
