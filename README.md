@@ -25,5 +25,6 @@ TO-DO LIST
 - will added Transfer offers for Players 
 - will added Game save/load 
 - will added Women Players and faces
+- will added Country Icons
 
 
