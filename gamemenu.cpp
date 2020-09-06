@@ -1,4 +1,4 @@
-#include "gamemenu.h"
+#include "GameMenu.h"
 #include "ui_gamemenu.h"
 
 
@@ -8,18 +8,27 @@ GameMenu::GameMenu(QWidget *parent) :
     mLeagueNumber(0)
 {
     ui->setupUi(this);
+    this->setWindowIcon(QIcon ("C:/Users/temel/Documents/FM20/FootballManagerSimulation/icons/031-ball.png"));
+
+    ui->create_game_frame->hide();
+
+    QPixmap pix("C:/Users/temel/Documents/FM20/FootballManagerSimulation/wallpaper.jpg");
+    ui->wallpaper->setPixmap(pix.scaled(1500, 750, Qt::KeepAspectRatio));
+
+    ui->game_menu_frame->show();
+
     setDatabase();
 }
 
 GameMenu::~GameMenu()
 {
-    delete ui;
+
 }
 
 void GameMenu::setDatabase()
 {
     mydb = QSqlDatabase::addDatabase("QSQLITE");
-    mydb.setDatabaseName("C:/Users/temel/Desktop/FM.db");
+    mydb.setDatabaseName("C:/Users/temel/Documents/FM20/FootballManagerSimulation/FM.db");
 
     if(!mydb.open())
         qDebug() << "failed to open the database" << endl;
@@ -38,10 +47,10 @@ void GameMenu::drawLeagues()
 
     for(auto i : getLeaguesFromDatabase())
     {
-        QCheckBox *checkbox = new QCheckBox(i, this);
-        checkbox->setGeometry(x, y+(50*index), 150, 50);
-        checkbox->setCheckState(Qt::CheckState::Checked);
-        mCheckBox.push_back(checkbox);
+        QCheckBox *checkbox = new QCheckBox( i, ui->create_game_frame );
+        checkbox->setGeometry( x, y + ( 50 * index ), 150, 50 );
+        checkbox->setCheckState( Qt::CheckState::Checked );
+        mCheckBox.push_back( checkbox );
         index++;
     }
 }
@@ -82,9 +91,19 @@ void GameMenu::on_startGame_clicked()
     {
         this->close();
 
-        mMainWindow = new MainWindow(this);
-        mMainWindow->InitGame(pManagerName, "Trabzonspor", temp);
+        mMainWindow = new MainWindow( this );
+        mMainWindow->InitGame( pManagerName, "Trabzonspor", temp );
         mMainWindow->show();
     }
+}
 
+void GameMenu::on_pushButton_clicked()
+{
+    ui->create_game_frame->show();
+    ui->game_menu_frame->hide();
+}
+
+void GameMenu::on_pushButton_5_clicked()
+{
+    this->close();
 }

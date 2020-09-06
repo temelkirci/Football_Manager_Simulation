@@ -1,33 +1,34 @@
 #ifndef LEAGUE_H
 #define LEAGUE_H
 
-#include "team.h"
+#include "Club.h"
+#include "Fixture.h"
+#include "Match.h"
 #include <vector>
-#include "match.h"
 
-class League
+class League : public Fixture
 {
 private:
-    std::vector<Team*> mTeamsInLeague;
+    std::vector< std::shared_ptr< Club > > mClubsInLeague;
     QString mLeagueName;
     QString mLeagueCountry;
     int mLeagueDivision;
-    int mTeamNumber;
+    int mClubNumber;
     int mLeagueReputation;
 
-    std::vector<Match*> mFixtures;
+    std::vector< std::shared_ptr< Match > > mFixtures;
 
 
 public:
-    League(QString,QString,int,int);
-    void addTeamToLeague(Team*);
+    League( QString, QString, int, int );
+    void addClubToLeague( std::shared_ptr< Club > );
     QString getLeagueName();
-    std::vector<Team*> getAllTeams();
+    std::vector<std::shared_ptr< Club >> getAllClubs();
     void createLeagueFixtures();
-    int generateRandomNumber(int, int);
+    int generateRandomNumber( int, int );
 
-    void setFixtures(Match*);
-    std::vector<Match*> getAllMatchByDate(QDate);
+    void setFixtures( std::shared_ptr< Match > );
+    std::vector< std::shared_ptr< Match > > getAllMatchByDate( QDate );
 };
 
 #endif // LEAGUE_H

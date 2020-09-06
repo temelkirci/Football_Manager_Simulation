@@ -1,17 +1,37 @@
-#include "player.h"
+#include "Player.h"
 #include <iostream>
 
-Player::Player(QString playerName, QString playerPosition, QString playerTeam, QString playerContractExpire, QString playerBirthDay, unsigned long long int playerValue, int playerWage, int playerForm)
+Player::Player( QString playerName,
+                QString playerPosition,
+                std::shared_ptr< Club > playerClub,
+                QString playerContractExpire,
+                QDate playerBirthDay,
+                unsigned playerValue,
+                unsigned playerWage,
+                unsigned playerForm )
 {
+    mPlayerClub = ( playerClub );
+
     mPlayerName = playerName;
     mPlayerPosition = playerPosition;
-    mPlayerTeamName = playerTeam;
     mPlayerContractExpire = playerContractExpire;
 
     mPlayerBirthDate = playerBirthDay;
     mPlayerWage = playerWage;
     mPlayerForm = playerForm;
     mPlayerValue = playerValue;
+
+    mCondition = 100;
+    mMoral = 100;
+
+    mInjured = false;
+
+    mPlayerDevelopAttributes["Reflexes"] = 0;
+    mPlayerDevelopAttributes["Tackling"] = 0;
+    mPlayerDevelopAttributes["Passing"] = 0;
+    mPlayerDevelopAttributes["Technique"] = 0;
+    mPlayerDevelopAttributes["Pace"] = 0;
+    mPlayerDevelopAttributes["Finishing"] = 0;
 }
 
 Player::~Player()
@@ -19,39 +39,109 @@ Player::~Player()
 
 }
 
-void Player::addContractOffers(Team* team, int salary)
+void Player::PlayerDevelopAttributes( QString attribute, int value )
 {
-    mContractOffers.insert(std::pair<Team*, int>(team, salary));
+    mPlayerDevelopAttributes[ attribute ] = mPlayerDevelopAttributes[ attribute ] + value;
+
+    if(mPlayerDevelopAttributes[ attribute ] >= 1000)
+    {
+        mPlayerDevelopAttributes[ attribute ] = mPlayerDevelopAttributes[ attribute ] - 1000;
+        mPlayerAttributes[ attribute ] = mPlayerAttributes[ attribute ] + 1;
+    }
+
+    calculateCA();
 }
 
-void Player::setPlayerPA(int PA)
+void Player::calculateCA()
+{
+    if( mPlayerPosition == "GK" )
+    {
+        mPlayerCurrentAbility = mPlayerAttributes[ "Reflexes" ];
+    }
+    else
+    {
+        mPlayerCurrentAbility = ( mPlayerAttributes[ "Tackling" ] + mPlayerAttributes[ "Passing" ] + mPlayerAttributes[ "Technique" ] + mPlayerAttributes[ "Pace" ] + mPlayerAttributes[ "Finishing" ] ) / 5;
+    }
+
+    if(mPlayerCurrentAbility > mPlayerPotentialAbility )
+    {
+        mPlayerCurrentAbility = mPlayerPotentialAbility;
+    }
+}
+
+bool Player::isInjured()
+{
+    return mInjured;
+}
+
+QDate Player::getInjuredFinish()
+{
+    return mInjuredFinishDate;
+}
+
+void Player::setPlayerNationality( QString country )
+{
+    mPlayerNationality = country;
+}
+
+QString Player::getPlayerNationality()
+{
+    return mPlayerNationality;
+}
+
+void Player::setMoral( int moral )
+{
+    mMoral = moral;
+}
+
+int Player::getMoral()
+{
+    return mMoral;
+}
+
+void Player::setCondition( int condition )
+{
+    mCondition = condition;
+}
+
+int Player::getCondition()
+{
+    return mCondition;
+}
+
+void Player::setMinimumInterestReputation( int reputation )
+{
+    mMinimumInterestReputation = reputation;
+}
+
+int Player::getMinimumInterestReputation()
+{
+    return mMinimumInterestReputation;
+}
+
+void Player::setFacePath( QString PlayerFacePath )
+{
+    mPlayerFacePath = PlayerFacePath;
+}
+
+QString Player::getFacePath()
+{
+    return mPlayerFacePath;
+}
+
+void Player::setPlayerPA( int PA )
 {
     mPlayerPotentialAbility = PA;
 }
+
 int Player::getPlayerPA()
 {
     return mPlayerPotentialAbility;
 }
 
-void Player::setPlayerCA(int CA)
-{
-    mPlayerCurrentAbility = CA;
-}
 int Player::getPlayerCA()
 {
     return mPlayerCurrentAbility;
-}
-
-void Player::addTransferOffer(Team* team, unsigned long long int offer)
-{
-    mTransferOffers.erase(team);
-
-    mTransferOffers[team] = offer;
-}
-
-std::map<Team*, unsigned long long int> Player::getTransferOffer()
-{
-    return mTransferOffers;
 }
 
 void Player::releasePlayer()
@@ -61,19 +151,24 @@ void Player::releasePlayer()
     mPlayerWage = 0;
     mPlayerValue = 0;
     mPlayerContractExpire = "expired";
-    mPlayerTeamName = "";
 }
 
-unsigned long long int Player::getAskingPrice()
+unsigned Player::getAskingPrice()
 {
     return mAskingPrice;
 }
 
-QString Player::getPlayerTeam()
+void Player::addContractOffers( ContractOffer contractOffer )
 {
-    return mPlayerTeamName;
+    contractOffersToPlayer.push_back( contractOffer );
 }
-void Player::setTransferList(bool transfer)
+
+std::shared_ptr< Club > Player::getPlayerClub()
+{
+    return (mPlayerClub);
+}
+
+void Player::setTransferList( bool transfer )
 {
     mTransferList = transfer;
 }
@@ -83,39 +178,39 @@ bool Player::isTransferList()
     return mTransferList;
 }
 
-void Player::setAskingPrice(unsigned long long int askingPrice)
+void Player::setAskingPrice( unsigned askingPrice )
 {
     mAskingPrice = askingPrice;
 }
 
 int Player::getPlayerReflexes()
 {
-    return mPlayerAttributes["Reflexes"];
+    return mPlayerAttributes[ "Reflexes" ];
 }
 
 int Player::getPlayerTackling()
 {
-    return mPlayerAttributes["Tackling"];
+    return mPlayerAttributes[ "Tackling" ];
 }
 
 int Player::getPlayerPassing()
 {
-    return mPlayerAttributes["Passing"];
+    return mPlayerAttributes[ "Passing" ];
 }
 
 int Player::getPlayerPace()
 {
-    return mPlayerAttributes["Pace"];
+    return mPlayerAttributes[ "Pace" ];
 }
 
 int Player::getPlayerTechnique()
 {
-    return mPlayerAttributes["Technique"];
+    return mPlayerAttributes[ "Technique" ];
 }
 
 int Player::getPlayerFinishing()
 {
-    return mPlayerAttributes["Finishing"];
+    return mPlayerAttributes[ "Finishing" ];
 }
 
 QString Player::getPlayerName()
@@ -128,7 +223,7 @@ int Player::getPlayerWage()
     return mPlayerWage;
 }
 
-unsigned long long int Player::getPlayerValue()
+unsigned Player::getPlayerValue()
 {
     return mPlayerValue;
 }
@@ -138,7 +233,7 @@ int Player::getPlayerForm()
     return mPlayerForm;
 }
 
-QString Player::getPlayerBirthDay()
+QDate Player::getPlayerBirthDay()
 {
     return mPlayerBirthDate;
 }
@@ -153,12 +248,24 @@ QString Player::getPlayerPosition()
     return mPlayerPosition;
 }
 
-void Player::setPlayerAttributes(int Reflexes, int Tackling, int Passing, int Technique, int Pace, int Finishing)
+unsigned int Player::getPlayerAge()
 {
-    mPlayerAttributes["Reflexes"] = Reflexes;
-    mPlayerAttributes["Tackling"] = Tackling;
-    mPlayerAttributes["Passing"] = Passing;
-    mPlayerAttributes["Technique"] = Technique;
-    mPlayerAttributes["Pace"] = Pace;
-    mPlayerAttributes["Finishing"] = Finishing;
+    return mPlayerAge;
+}
+
+void Player::setPlayerAttributes( int Reflexes, int Tackling, int Passing, int Technique, int Pace, int Finishing )
+{
+    mPlayerAttributes[ "Reflexes" ] = Reflexes;
+    mPlayerAttributes[ "Tackling" ] = Tackling;
+    mPlayerAttributes[ "Passing" ] = Passing;
+    mPlayerAttributes[ "Technique" ] = Technique;
+    mPlayerAttributes[ "Pace" ] = Pace;
+    mPlayerAttributes[ "Finishing" ] = Finishing;
+
+    calculateCA();
+}
+
+void Player::setPlayerClub( std::shared_ptr< Club > pPlayerClub )
+{
+    mPlayerClub = ( pPlayerClub );
 }

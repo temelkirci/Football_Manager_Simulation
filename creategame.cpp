@@ -1,19 +1,20 @@
-#include "creategame.h"
+#include "CreateGame.h"
+#include <memory>
 
-CreateGame::CreateGame() : mTeamDatabase(nullptr)
+CreateGame::CreateGame()
 {
-     qDebug() << "CreateGame()" << endl;
-
      mDay = 1;
      mMonth = 6;
      mYear = 2020;
 
      mFullDate = QString::number(mDay) + "." + QString::number(mMonth) + "." + QString::number(mYear);
+
+     qDebug() << "mFullDate :" << mFullDate << endl;
 }
 
 CreateGame::~CreateGame()
 {
-    delete mTeamDatabase;
+
 }
 
 QString CreateGame::getFullDate()
@@ -21,12 +22,12 @@ QString CreateGame::getFullDate()
     return mFullDate;
 }
 
-void CreateGame::addFreePlayer(Player* player)
+void CreateGame::addFreePlayer( std::shared_ptr< Player > player )
 {
-    mFreePlayers.push_back(player);
+    mFreePlayers.push_back( player );
 }
 
-std::vector<Player*> CreateGame::getFreePlayers()
+std::vector<std::shared_ptr< Player >> CreateGame::getFreePlayers()
 {
     return mFreePlayers;
 }
@@ -35,106 +36,156 @@ void CreateGame::createDatabase()
 {
     for(auto i : mLeagueList)
     {
-        QSqlQuery leagueSQL("SELECT * FROM LEAGUES");
-        int leagues = leagueSQL.record().indexOf("LEAGUES");
-        int leagueReputation = leagueSQL.record().indexOf("REPUTATION");
-        int leagueCountry = leagueSQL.record().indexOf("COUNTRY");
-        int leagueDivision = leagueSQL.record().indexOf("DIVISION");
+        QSqlQuery leagueSQL( "SELECT * FROM LEAGUES" );
+        int leagues = leagueSQL.record().indexOf( "LEAGUES" );
+        int leagueReputation = leagueSQL.record().indexOf( "REPUTATION" );
+        int leagueCountry = leagueSQL.record().indexOf( "COUNTRY" );
+        int leagueDivision = leagueSQL.record().indexOf( "DIVISION" );
 
-        while (leagueSQL.next())
+        while ( leagueSQL.next() )
         {
-           QString pLeagueName = leagueSQL.value(leagues).toString();
-           QString pLeagueReputation = leagueSQL.value(leagueReputation).toString();
-           QString pLeagueCountry = leagueSQL.value(leagueCountry).toString();
-           QString pLeagueDivision = leagueSQL.value(leagueDivision).toString();
+           QString pLeagueName = leagueSQL.value( leagues ).toString();
+           QString pLeagueReputation = leagueSQL.value( leagueReputation ).toString();
+           QString pLeagueCountry = leagueSQL.value( leagueCountry ).toString();
+           QString pLeagueDivision = leagueSQL.value( leagueDivision ).toString();
 
-            if(i == pLeagueName)
+            if( i == pLeagueName )
             {
-                League* pLeague = new League(pLeagueName, pLeagueCountry, pLeagueReputation.toInt(), pLeagueDivision.toInt());
+                std::shared_ptr< League > pLeague = std::shared_ptr< League >(new League( pLeagueName, pLeagueCountry, pLeagueReputation.toInt(), pLeagueDivision.toInt() ));
 
 
-                QSqlQuery teamSQL("SELECT * FROM "+pLeagueCountry+ "_TEAMS");
+                QSqlQuery ClubSQL( "SELECT * FROM " + pLeagueCountry+ "_TEAMS" );
 
-                int team_name = teamSQL.record().indexOf("TEAM_NAME");
-                int reputation = teamSQL.record().indexOf("REPUTATION");
-                int transfer_budget = teamSQL.record().indexOf("TRANSFER_BUDGET");
-                int wage_budget = teamSQL.record().indexOf("WAGE_BUDGET");
-                int league_name = teamSQL.record().indexOf("LEAGUE_NAME");
+                int Club_name = ClubSQL.record().indexOf( "TEAM_NAME" );
+                int reputation = ClubSQL.record().indexOf( "REPUTATION" );
+                int transfer_budget = ClubSQL.record().indexOf( "TRANSFER_BUDGET" );
+                int wage_budget = ClubSQL.record().indexOf( "WAGE_BUDGET" );
+                int league_name = ClubSQL.record().indexOf( "LEAGUE_NAME" );
 
-                while (teamSQL.next())
+                while ( ClubSQL.next() )
                 {
-                   QString pTeamName = teamSQL.value(team_name).toString();
-                   QString pTeamReputation = teamSQL.value(reputation).toString();
-                   QString pTransferBudget = teamSQL.value(transfer_budget).toString();
-                   QString pWageBudget = teamSQL.value(wage_budget).toString();
-                   QString pLeagueName = teamSQL.value(league_name).toString();
+                   QString pClubName = ClubSQL.value( Club_name ).toString();
+                   QString pClubReputation = ClubSQL.value( reputation ).toString();
+                   QString pTransferBudget = ClubSQL.value( transfer_budget ).toString();
+                   QString pWageBudget = ClubSQL.value( wage_budget ).toString();
+                   QString pLeagueName = ClubSQL.value( league_name ).toString();
 
-                   pLeague->addTeamToLeague(mTeamDatabase->addTeamToGame(pTeamName, pTeamReputation.toInt(), pTransferBudget.toInt(), pWageBudget.toInt(), pLeagueName, pLeagueReputation.toInt(), pLeagueCountry));
+                   pLeague->addClubToLeague( mClubDatabase->addClubToGame( pClubName, pClubReputation.toInt(), pTransferBudget.toInt(), pWageBudget.toInt(), pLeagueName, pLeagueReputation.toInt(), pLeagueCountry ) );
+
+                   addFreePlayer( mClubDatabase->GenerateFreePlayers( "GK" ) );
+                   addFreePlayer( mClubDatabase->GenerateFreePlayers( "DC" ) );
+                   addFreePlayer( mClubDatabase->GenerateFreePlayers( "DR" ) );
+                   addFreePlayer( mClubDatabase->GenerateFreePlayers( "DL" ) );
+                   addFreePlayer( mClubDatabase->GenerateFreePlayers( "AMR" ) );
+                   addFreePlayer( mClubDatabase->GenerateFreePlayers( "AML" ) );
+                   addFreePlayer( mClubDatabase->GenerateFreePlayers( "MC" ) );
+                   addFreePlayer( mClubDatabase->GenerateFreePlayers( "AMC" ) );
+                   addFreePlayer( mClubDatabase->GenerateFreePlayers( "FC" ) );
                 }
-                mAllLeaguesInGame.push_back(pLeague);
+                mAllLeaguesInGame.push_back( pLeague );
                 pLeague->createLeagueFixtures();
             }
-
         }
     }
 
     setScoutPlayers();
-    qDebug() << "Game was created" << endl;
 }
 
 void CreateGame::setScoutPlayers()
 {
-    for(auto i : mTeamDatabase->allTeamsInGame)
+    for( size_t i=0; i < mClubDatabase->allClubsInGame.size(); i++ )
     {
-        if(i->getPlayersInTransferList().size() != 0)
+        std::shared_ptr< Club > tempClub = ( mClubDatabase->allClubsInGame[ i ] );
+
+        if( tempClub->getPlayersInTransferList().size() != 0 )
         {
-            unsigned long long int maxTransfer = i->getTransferBudget() / i->getPlayersInTransferList().size();
-            int clubPoint = i->getTeamAvaragePoint()+5;
+            unsigned maxTransfer = ( ( tempClub->getTransferBudget() / tempClub->getPlayersInTransferList().size() ) / 10000 ) * 10000;
 
-            for(auto x : i->getPlayersInTransferList())
+            for( size_t x=0; x < tempClub->getPlayersInTransferList().size(); x++ )
             {
-                QString position = x->getPlayerPosition();
+                std::shared_ptr< Player > tempPlayer = ( tempClub->getPlayersInTransferList()[ x ] );
 
-                for(auto t : mTeamDatabase->allTeamsInGame)
+                QString position = tempPlayer->getPlayerPosition();
+
+                for( size_t t=0; t < mClubDatabase->allClubsInGame.size(); t++ )
                 {
-                    if(i->getTeamName() != t->getTeamName())
+                    std::shared_ptr< Club > tempAllClub = ( mClubDatabase->allClubsInGame[ i ] );
+
+                    if( tempClub->getClubName() != tempAllClub->getClubName() )
                     {
-                        for(auto m : t->getPlayersInTeam())
+                        for( size_t m=0; m < tempAllClub->getPlayersInClub().size(); m++ )
                         {
-                            unsigned long long int offer = m->getAskingPrice();
-                            if(!m->isTransferList())
-                                offer = ( ( (( m->getPlayerValue()*m->getPlayerForm() ) /  (2020 - m->getPlayerBirthDay().toInt()) ) + (( m->getPlayerValue()*m->getPlayerPA() ) / (2020 - m->getPlayerBirthDay().toInt())) )/10000 ) * 2500;
+                            std::shared_ptr< Player > tempPlayerInClub = ( tempAllClub->getPlayersInClub()[ m ] );
 
-                            if( ( (m->getPlayerCA()+m->getPlayerForm()/10) > clubPoint) && (m->getPlayerPosition() == position) && (offer < maxTransfer) )
+                            unsigned offer = tempPlayerInClub->getAskingPrice();
+                            if( !tempPlayerInClub->isTransferList() )
+                                offer = ( ( ( ( tempPlayerInClub->getPlayerValue() * tempPlayerInClub->getPlayerForm() ) /  ( 2020 - tempPlayerInClub->getPlayerBirthDay().year() ) ) + ( ( tempPlayerInClub->getPlayerValue() * tempPlayerInClub->getPlayerPA() ) / ( 2020 - tempPlayerInClub->getPlayerBirthDay().year() ) ) ) / 10000 ) * 2500;
+
+                            if( ( tempClub->getClubReputation() > tempPlayerInClub->getMinimumInterestReputation() ) && ( tempPlayerInClub->getPlayerPosition() == position ) && ( offer < maxTransfer ) )
                             {
-                                if(m->getPlayerPosition() == "GK")
-                                {
-                                    if ( (m->getPlayerCA()+m->getPlayerForm()/10) >= (clubPoint+10))
-                                    {
-                                        if(m->isTransferList())
-                                        {
-                                            i->addScoutPlayer(m, offer);
-                                            m->addTransferOffer(i, offer);
-                                        }
-                                        else
-                                        {
-                                            i->addScoutPlayer(m, maxTransfer);
-                                            m->addTransferOffer(i, maxTransfer);
-                                        }
+                                bool ScoutPlayer = false;
 
+                                if( tempPlayerInClub->getPlayerPosition() == "GK" )
+                                {
+                                    if ( tempPlayerInClub->getPlayerReflexes() > ( tempClub->getClubReputation() / 12 ) )
+                                    {
+                                        ScoutPlayer = true;
                                     }
                                 }
-                                else
+                                else if( tempPlayerInClub->getPlayerPosition() == "DC" )
                                 {
-                                    if(m->isTransferList())
+                                    if ( tempPlayerInClub->getPlayerTackling() > (tempClub->getClubReputation() / 10 ) )
                                     {
-                                        i->addScoutPlayer(m, offer);
-                                        m->addTransferOffer(i, offer);
+                                        ScoutPlayer = true;
+                                    }
+                                }
+                                else if( ( tempPlayerInClub->getPlayerPosition() == "DR" ) || ( tempPlayerInClub->getPlayerPosition() == "DL" ) )
+                                {
+                                    if ( ( tempPlayerInClub->getPlayerTackling() > ( tempClub->getClubReputation() / 10) ) )
+                                    {
+                                        ScoutPlayer = true;
+                                    }
+                                }
+                                else if( tempPlayerInClub->getPlayerPosition() == "MC" )
+                                {
+                                    if ( tempPlayerInClub->getPlayerPassing() > ( tempClub->getClubReputation() / 10 ) )
+                                    {
+                                        ScoutPlayer = true;
+                                    }
+                                }
+                                else if( tempPlayerInClub->getPlayerPosition() == "AMC" )
+                                {
+                                    if ( tempPlayerInClub->getPlayerPassing() > (tempClub->getClubReputation() / 10 ) )
+                                    {
+                                        ScoutPlayer = true;
+                                    }
+                                }
+                                else if( ( tempPlayerInClub->getPlayerPosition() == "AMR" ) || ( tempPlayerInClub->getPlayerPosition() == "AML" ) )
+                                {
+                                    if ( ( tempPlayerInClub->getPlayerTechnique() > ( tempClub->getClubReputation() / 10 ) ) )
+                                    {
+                                        ScoutPlayer = true;
+                                    }
+                                }
+                                else if( tempPlayerInClub->getPlayerPosition() == "FC" )
+                                {
+                                    if ( ( tempPlayerInClub->getPlayerFinishing() > ( tempClub->getClubReputation() / 10 ) ) )
+                                    {
+                                        ScoutPlayer = true;
+                                    }
+                                }
+
+                                if( ScoutPlayer == true )
+                                {
+                                    if( tempPlayerInClub->isTransferList() )
+                                    {
+                                        tempClub->addScoutPlayer( tempPlayerInClub, offer );
+                                        tempClub->generateTransferOffer( tempPlayerInClub, offer );
                                     }
                                     else
                                     {
-                                        i->addScoutPlayer(m, maxTransfer);
-                                        m->addTransferOffer(i, maxTransfer);
+                                        tempClub->addScoutPlayer( tempPlayerInClub, maxTransfer );
+                                        tempClub->generateTransferOffer( tempPlayerInClub, maxTransfer );
                                     }
                                 }
                             }
@@ -146,28 +197,28 @@ void CreateGame::setScoutPlayers()
     }
 }
 
-std::vector<Manager*> CreateGame::getAllManagers()
+std::vector< std::shared_ptr< Manager > > CreateGame::getAllManagers()
 {
     return mAllManagers;
 }
 
-std::vector<League*> CreateGame::getAllLeaguesInGame()
+std::vector< std::shared_ptr< League > > CreateGame::getAllLeaguesInGame()
 {
     return mAllLeaguesInGame;
 }
 
-TeamDatabase* CreateGame::getTeamDatabase()
+std::shared_ptr< ClubDatabase > CreateGame::getClubDatabase()
 {
-    return mTeamDatabase;
+    return (mClubDatabase);
 }
 
-void CreateGame::prepareDatabase(QString pManagerName, QString pMyTeam, std::vector<QString> pLeagueList)
+void CreateGame::prepareDatabase(QString pManagerName, QString pMyClub, std::vector<QString> pLeagueList)
 {
     mManagerName = pManagerName;
-    mMyTeam = pMyTeam;
+    mMyClub = pMyClub;
     mLeagueList = pLeagueList;
 
-    mTeamDatabase = new TeamDatabase();
+    mClubDatabase = std::shared_ptr< ClubDatabase > (new ClubDatabase());
 
     readCSV();
     setDatabase();
@@ -175,10 +226,10 @@ void CreateGame::prepareDatabase(QString pManagerName, QString pMyTeam, std::vec
 
 void CreateGame::setDatabase()
 {
-    mydb = QSqlDatabase::addDatabase("QSQLITE");
-    mydb.setDatabaseName("C:/Users/temel/Desktop/FM.db");
+    mydb = QSqlDatabase::addDatabase( "QSQLITE" );
+    mydb.setDatabaseName( "C:/Users/temel/Documents/FM20/FootballManagerSimulation/FM.db" );
 
-    if(!mydb.open())
+    if( !mydb.open() )
         qDebug() << "failed to open the database" << endl;
     else
         createDatabase();
@@ -188,24 +239,24 @@ void CreateGame::setDatabase()
 
 void CreateGame::readCSV()
 {
-    QFile f("C:/Users/temel/Desktop/fm20.csv");
-    if (f.open(QIODevice::ReadOnly))
+    QFile f( "C:/Users/temel/Documents/FM20/FootballManagerSimulation/fm20.csv" );
+    if ( f.open(QIODevice::ReadOnly ) )
     {
         //file opened successfully
         int i=0;
-        while (!f.atEnd())
+        while ( !f.atEnd() )
         {
             i++;
 
-            if(i > 1)
+            if( i > 1 )
             {
                 QByteArray line = f.readLine();
 
-                QString playerSurname = line.split(';')[1];
-                QString playerName = line.split(';')[0];
-                QString playerCountry = line.split(';')[2].replace("\r\n", "");
+                QString playerSurname = line.split( ';' )[1];
+                QString playerName = line.split( ';' )[0];
+                QString playerCountry = line.split( ';' )[2].replace( "\r\n", "" );
 
-                mTeamDatabase->getPlayerDatabase()->addPlayerName(playerName, playerSurname, playerCountry);
+                mClubDatabase->getPlayerDatabase()->addPlayerName( playerName, playerSurname, playerCountry );
             }
         }
 

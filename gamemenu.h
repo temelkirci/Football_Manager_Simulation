@@ -2,7 +2,7 @@
 #define GAMEMENU_H
 
 #include <QDialog>
-#include "mainwindow.h"
+#include "MainWindow.h"
 #include <QCheckBox>
 #include <QtSql>
 
@@ -23,6 +23,10 @@ public:
 
 private slots:
     void on_startGame_clicked();
+
+    void on_pushButton_clicked();
+
+    void on_pushButton_5_clicked();
 
 private:
     Ui::GameMenu *ui;

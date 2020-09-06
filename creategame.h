@@ -1,9 +1,9 @@
 #ifndef CREATEGAME_H
 #define CREATEGAME_H
 
-#include "league.h"
-#include "manager.h"
-#include "teamdatabase.h"
+#include "League.h"
+#include "Manager.h"
+#include "ClubDatabase.h"
 #include <vector>
 #include <QtSql>
 #include <QDebug>
@@ -16,16 +16,19 @@ using namespace std;
 class CreateGame
 {
 private:
-    std::vector<Manager*> mAllManagers;
-    std::vector<League*> mAllLeaguesInGame;
-    std::vector<Player*> mFreePlayers;
+    std::vector< std::shared_ptr< Manager > > mAllManagers;
+    std::vector< std::shared_ptr< League > > mAllLeaguesInGame;
+    std::vector<std::shared_ptr< Player >> mFreePlayers;
 
     QSqlDatabase mydb;
 
-    TeamDatabase* mTeamDatabase;
+    std::shared_ptr< ClubDatabase > mClubDatabase;
     QString mManagerName;
-    QString mMyTeam;
+    QString mMyClub;
     std::vector<QString> mLeagueList;
+    std::vector< std::shared_ptr< Match > > mFriendlyMatch;
+    std::vector< std::shared_ptr< Match > > mAllMatches;
+
 
     QString mFullDate;
 
@@ -37,19 +40,20 @@ public:
     CreateGame();
     virtual ~CreateGame();
 
-    std::vector<Manager*> getAllManagers();
-    std::vector<League*> getAllLeaguesInGame();
-    TeamDatabase* getTeamDatabase();
+    std::vector< std::shared_ptr< Manager > > getAllManagers();
+    std::vector< std::shared_ptr< League > > getAllLeaguesInGame();
+    std::shared_ptr< ClubDatabase > getClubDatabase();
+    std::vector< std::shared_ptr< Match > > getFriendlyMatch(QDate);
 
     QString getFullDate();
     void setFreePlayers();
-    void addFreePlayer(Player*);
-    std::vector<Player*> getFreePlayers();
+    void addFreePlayer( std::shared_ptr< Player > );
+    std::vector<std::shared_ptr< Player >> getFreePlayers();
     void setScoutPlayers();
     void setDatabase();
     void createDatabase();
     void readCSV();
-    void prepareDatabase(QString pManagerName, QString pMyTeam, std::vector<QString> pLeagueList);
+    void prepareDatabase( QString pManagerName, QString pMyClub, std::vector<QString> pLeagueList );
 };
 
 #endif // CREATEGAME_H

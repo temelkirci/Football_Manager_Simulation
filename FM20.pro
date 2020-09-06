@@ -4,7 +4,7 @@
 #
 #-------------------------------------------------
 
-QT       += core gui sql
+QT       += core gui sql charts
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -25,31 +25,35 @@ DEFINES += QT_DEPRECATED_WARNINGS
 CONFIG += c++11
 
 SOURCES += \
-        creategame.cpp \
-        gamemenu.cpp \
-        league.cpp \
-        main.cpp \
-        mainwindow.cpp \
-        manager.cpp \
-        match.cpp \
-        matchengine.cpp \
-        player.cpp \
-        playerdatabase.cpp \
-        team.cpp \
-        teamdatabase.cpp
+        Club.cpp \
+        ClubDatabase.cpp \
+        CreateGame.cpp \
+        Fixture.cpp \
+        GameMenu.cpp \
+        League.cpp \
+        Main.cpp \
+        MainWindow.cpp \
+        Manager.cpp \
+        Match.cpp \
+        MatchEngine.cpp \
+        Player.cpp \
+        PlayerDatabase.cpp \
+        Tactic.cpp
 
 HEADERS += \
-        creategame.h \
-        gamemenu.h \
-        league.h \
-        mainwindow.h \
-        manager.h \
-        match.h \
-        matchengine.h \
-        player.h \
-        playerdatabase.h \
-        team.h \
-        teamdatabase.h
+        Club.h \
+        ClubDatabase.h \
+        CreateGame.h \
+        Fixture.h \
+        GameMenu.h \
+        League.h \
+        MainWindow.h \
+        Manager.h \
+        Match.h \
+        MatchEngine.h \
+        Player.h \
+        PlayerDatabase.h \
+        Tactic.h
 
 FORMS += \
         gamemenu.ui \

@@ -1,24 +1,53 @@
-#include "match.h"
+#include "Match.h"
 
 Match::Match()
 {
+    mTime = 0;
     mPlayed = false;
+
+    mHomeScore = 0;
+    mAwayScore = 0;
 }
 
-void Match::setMatch(int week, Team* home_team,Team* away_team, QDate match_date, bool friendly_match)
+void Match::setMatch( int week, std::shared_ptr< Club > home_Club,std::shared_ptr< Club > away_Club, QDate match_date, bool friendly_match )
 {
-    if(friendly_match)
+    mPlayed = false;
+
+    if( friendly_match )
     {
 
     }
     else
     {
-        mHomeTeam = home_team;
-        mAwayTeam = away_team;
+        mHomeClub = home_Club;
+        mAwayClub = away_Club;
         mMatchDate = match_date;
-    }
+    } 
+}
 
-    qDebug() << home_team->getTeamName() << " : " << away_team->getTeamName() << " -> " << match_date << endl;
+void Match::addScoreForHomeClub(unsigned int tScore)
+{
+    mHomeScore = mHomeScore + tScore;
+}
+
+void Match::addScoreForAwayClub(unsigned int tScore)
+{
+    mAwayScore = mAwayScore + tScore;
+}
+
+unsigned int Match::getScoreForHomeClub()
+{
+    return mHomeScore;
+}
+
+unsigned int Match::getScoreForAwayClub()
+{
+    return mAwayScore;
+}
+
+void Match::eventsInGame(int tTime, QString tEvents)
+{
+    mEvents[tTime] = tEvents;
 }
 
 bool Match::isPlayed()
@@ -26,14 +55,14 @@ bool Match::isPlayed()
     return mPlayed;
 }
 
-Team* Match::getHomeTeam()
+std::shared_ptr< Club > Match::getHomeClub()
 {
-    return mHomeTeam;
+    return (mHomeClub);
 }
 
-Team* Match::getAwayTeam()
+std::shared_ptr< Club > Match::getAwayClub()
 {
-    return mAwayTeam;
+    return (mAwayClub);
 }
 
 QDate Match::getMatchDate()

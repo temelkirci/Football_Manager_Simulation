@@ -1,11 +1,9 @@
-#include "creategame.h"
-#include "gamemenu.h"
+#include "GameMenu.h"
 #include <QApplication>
 
 int main(int argc, char *argv[])
 {
-    QTime time = QTime::currentTime();
-    qsrand((uint)time.msec());
+    srand((unsigned)time(0));
 
     QApplication a(argc, argv);
 

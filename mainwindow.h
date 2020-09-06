@@ -7,60 +7,65 @@
 #include <QTabWidget>
 #include <QTableWidgetItem>
 #include <string>
-#include "creategame.h"
+#include "CreateGame.h"
 #include <map>
 #include <QPushButton>
 #include <vector>
-
+#include <QSignalMapper>
 
 namespace Ui {
 class MainWindow;
 }
+
 
 class MainWindow : public QMainWindow
 {
     Q_OBJECT
 
 public:
-    explicit MainWindow(QWidget *parent = nullptr);
+    explicit MainWindow( QWidget *parent = nullptr );
     ~MainWindow();
 
-    Team* getMyTeam();
-    void showMyTeam();
-    void InitGame(QString pManagerName, QString pMyTeam, std::vector<QString> pLeagueList);
-    void createInbox(QString, QString);
+    std::shared_ptr< Club > getMyClub();
+    void showMyClub();
+    void InitGame( QString pManagerName, QString pMyClub, std::vector<QString> pLeagueList );
+    void createInbox( QString, QString );
     void showMyInbox();
     void showTransferList();
     void showScoutList();
-    QString getValueColor(int);
+    QString getValueColor( int );
     QDate mToday;
     Ui::MainWindow *ui;
+    void setIcons();
+    void setMatchUI( std::shared_ptr< Match > x );
 
 private slots:
-    void showPlayerDetails();
-    void drawLeague(QString);
+
+    void drawLeague( QString );
     void on_pushButton_clicked();
-    void on_myTeam_cellClicked(int row, int column);
-    void showMyMessage(QString);
+    void on_myClub_cellClicked( int row, int column );
+    void showMyMessage( QString );
 
     void on_ProgressButton_clicked();
-    void on_freePlayersCheckbox_stateChanged(int arg1);
-    void on_LeagueTable_cellClicked(int row, int column);
+    void on_freePlayersCheckbox_stateChanged( int arg1 );
+    void on_LeagueTable_cellClicked( int row, int column );
     void on_releasePlayerButton_clicked();
 
     void on_addTransferListButton_clicked();
+    void on_playMatchButton_clicked();
+    void on_pushButton_2_clicked();
 
 private:
 
-    TeamDatabase* mTeamDatabase;
-    Team* mMyTeam;
-    QTableWidget* pTable;
-    CreateGame* mCreateWindow;
-    QString mMyTeamName;
-    Player* mSelectedPlayer;
-    bool init;
-    QSignalMapper mapper;
+    std::shared_ptr< ClubDatabase > mClubDatabase;
+    std::shared_ptr< Club > mMyClub;
+    std::shared_ptr< Match > tMatch;
 
+    QTableWidget* pTable;
+    std::shared_ptr< CreateGame > mCreateWindow;
+    QString mMyClubName;
+    std::shared_ptr< Player > mSelectedPlayer;
+    bool init;
     std::map<QPushButton*, QString> mInbox;
 };
 

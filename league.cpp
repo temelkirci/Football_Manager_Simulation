@@ -1,24 +1,29 @@
-#include "league.h"
+#include "League.h"
 #include <QTime>
 #include <algorithm>    // std::random_shuffle
-#include <match.h>
+#include <memory>
 
-League::League(QString pLeagueName, QString pLeagueCountry, int pLeagueReputation, int pLeagueDivision)
+League::League( QString pLeagueName,
+                QString pLeagueCountry,
+                int pLeagueReputation,
+                int pLeagueDivision )
 {
     mLeagueName = pLeagueName;
     mLeagueCountry = pLeagueCountry;
     mLeagueReputation = pLeagueReputation;
     mLeagueDivision = pLeagueDivision;
+
+    qDebug() << pLeagueName << endl;
 }
 
-void League::addTeamToLeague(Team* team)
+void League::addClubToLeague(std::shared_ptr< Club > Club)
 {
-    mTeamsInLeague.push_back(team);
+    mClubsInLeague.push_back(Club);
 }
 
-std::vector<Team*> League::getAllTeams()
+std::vector<std::shared_ptr< Club >> League::getAllClubs()
 {
-    return mTeamsInLeague;
+    return mClubsInLeague;
 }
 
 QString League::getLeagueName()
@@ -26,44 +31,44 @@ QString League::getLeagueName()
     return mLeagueName;
 }
 
-void League::setFixtures(Match* match)
+void League::setFixtures(std::shared_ptr< Match > match)
 {
     mFixtures.push_back(match);
 }
 
-std::vector<Match*> League::getAllMatchByDate(QDate match_date)
+std::vector< std::shared_ptr< Match > > League::getAllMatchByDate(QDate match_date)
 {
-    std::vector<Match*> temp;
+    std::vector<std::shared_ptr< Match >> temp;
 
-    for(auto i : mFixtures)
+    for(size_t i=0; i < mFixtures.size(); i++)
     {
-        if(i->getMatchDate() == match_date)
+        if( mFixtures[i]->getMatchDate() == match_date)
         {
-            temp.push_back(i);
+            temp.push_back( mFixtures[i]);
         }
     }
-
     return temp;
 }
 
 void League::createLeagueFixtures()
 {
-    std::vector<Team*> temp = mTeamsInLeague;
+
+    std::vector< std::shared_ptr< Club > > temp = mClubsInLeague;
 
     // using built-in random generator:
     std::random_shuffle ( temp.begin(), temp.end() );
-
-    for(auto first_team : temp)
+/*
+    for( int i=0; i<first_; i++)
     {
         int week = 1;
         QDate startDate(2020, 6, 3);
 
-        for(auto second_team : temp)
+        for(auto second_Club : temp)
         {
-            if(first_team != second_team)
+            if(first_Club != second_Club)
             {
                 Match *pMatch = new Match();
-                pMatch->setMatch(week, first_team, second_team, startDate);
+                pMatch->setMatch(week, first_Club, second_Club, startDate);
 
                 setFixtures(pMatch);
 
@@ -73,4 +78,5 @@ void League::createLeagueFixtures()
             }
         }
     }
+    */
 }

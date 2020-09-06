@@ -23,25 +23,35 @@
    </size>
   </property>
   <property name="windowTitle">
-   <string>MainWindow</string>
+   <string>Future Manager</string>
+  </property>
+  <property name="windowIcon">
+   <iconset>
+    <normaloff>../../../Downloads/1165208-football/1165208-football/png/010-football.png</normaloff>../../../Downloads/1165208-football/1165208-football/png/010-football.png</iconset>
+  </property>
+  <property name="styleSheet">
+   <string notr="true"/>
   </property>
   <widget class="QWidget" name="centralWidget">
    <widget class="QTabWidget" name="MainScreen">
     <property name="geometry">
      <rect>
-      <x>0</x>
+      <x>10</x>
       <y>40</y>
-      <width>1891</width>
+      <width>1881</width>
       <height>911</height>
      </rect>
     </property>
     <property name="font">
      <font>
-      <family>Calibri</family>
-      <pointsize>14</pointsize>
-      <weight>75</weight>
-      <bold>true</bold>
+      <family>Arial</family>
+      <pointsize>12</pointsize>
+      <weight>50</weight>
+      <bold>false</bold>
      </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true"/>
     </property>
     <property name="tabPosition">
      <enum>QTabWidget::North</enum>
@@ -52,20 +62,29 @@
     <property name="currentIndex">
      <number>0</number>
     </property>
+    <property name="iconSize">
+     <size>
+      <width>24</width>
+      <height>24</height>
+     </size>
+    </property>
     <property name="elideMode">
      <enum>Qt::ElideMiddle</enum>
     </property>
-    <widget class="QWidget" name="tab_2">
+    <property name="tabBarAutoHide">
+     <bool>false</bool>
+    </property>
+    <widget class="QWidget" name="squad_tab">
      <attribute name="title">
       <string>Squad</string>
      </attribute>
      <widget class="QTableWidget" name="myTeam">
       <property name="geometry">
        <rect>
-        <x>800</x>
+        <x>940</x>
         <y>110</y>
-        <width>631</width>
-        <height>771</height>
+        <width>931</width>
+        <height>761</height>
        </rect>
       </property>
       <property name="sizePolicy">
@@ -117,13 +136,13 @@
        <bool>false</bool>
       </property>
       <property name="rowCount">
-       <number>24</number>
+       <number>0</number>
       </property>
       <property name="columnCount">
-       <number>8</number>
+       <number>11</number>
       </property>
       <attribute name="horizontalHeaderVisible">
-       <bool>true</bool>
+       <bool>false</bool>
       </attribute>
       <attribute name="horizontalHeaderCascadingSectionResizes">
        <bool>false</bool>
@@ -135,7 +154,7 @@
        <number>75</number>
       </attribute>
       <attribute name="horizontalHeaderHighlightSections">
-       <bool>false</bool>
+       <bool>true</bool>
       </attribute>
       <attribute name="horizontalHeaderShowSortIndicator" stdset="0">
        <bool>false</bool>
@@ -153,118 +172,17 @@
        <number>25</number>
       </attribute>
       <attribute name="verticalHeaderHighlightSections">
-       <bool>false</bool>
+       <bool>true</bool>
       </attribute>
       <attribute name="verticalHeaderShowSortIndicator" stdset="0">
-       <bool>false</bool>
+       <bool>true</bool>
       </attribute>
       <attribute name="verticalHeaderStretchLastSection">
        <bool>false</bool>
       </attribute>
-      <row>
-       <property name="text">
-        <string>1</string>
-       </property>
-       <property name="textAlignment">
-        <set>AlignCenter</set>
-       </property>
-      </row>
-      <row>
-       <property name="text">
-        <string>2</string>
-       </property>
-       <property name="textAlignment">
-        <set>AlignCenter</set>
-       </property>
-      </row>
-      <row>
-       <property name="text">
-        <string>3</string>
-       </property>
-       <property name="textAlignment">
-        <set>AlignCenter</set>
-       </property>
-      </row>
-      <row>
-       <property name="text">
-        <string>4</string>
-       </property>
-       <property name="textAlignment">
-        <set>AlignCenter</set>
-       </property>
-      </row>
-      <row>
-       <property name="text">
-        <string>5</string>
-       </property>
-       <property name="textAlignment">
-        <set>AlignCenter</set>
-       </property>
-      </row>
-      <row>
-       <property name="text">
-        <string>6</string>
-       </property>
-       <property name="textAlignment">
-        <set>AlignCenter</set>
-       </property>
-      </row>
-      <row>
-       <property name="text">
-        <string>7</string>
-       </property>
-       <property name="textAlignment">
-        <set>AlignCenter</set>
-       </property>
-      </row>
-      <row>
-       <property name="text">
-        <string>8</string>
-       </property>
-       <property name="textAlignment">
-        <set>AlignCenter</set>
-       </property>
-      </row>
-      <row>
-       <property name="text">
-        <string>9</string>
-       </property>
-       <property name="textAlignment">
-        <set>AlignCenter</set>
-       </property>
-      </row>
-      <row>
-       <property name="text">
-        <string>10</string>
-       </property>
-       <property name="textAlignment">
-        <set>AlignCenter</set>
-       </property>
-      </row>
-      <row>
-       <property name="text">
-        <string>11</string>
-       </property>
-       <property name="textAlignment">
-        <set>AlignCenter</set>
-       </property>
-      </row>
-      <row/>
-      <row/>
-      <row/>
-      <row/>
-      <row/>
-      <row/>
-      <row/>
-      <row/>
-      <row/>
-      <row/>
-      <row/>
-      <row/>
-      <row/>
       <column>
        <property name="text">
-        <string>Player Name</string>
+        <string>      Player Name      </string>
        </property>
        <property name="font">
         <font>
@@ -280,7 +198,7 @@
       </column>
       <column>
        <property name="text">
-        <string>Player Surname</string>
+        <string>   Player Surname   </string>
        </property>
        <property name="font">
         <font>
@@ -312,7 +230,7 @@
       </column>
       <column>
        <property name="text">
-        <string>Monthly Wage </string>
+        <string>   Wage   </string>
        </property>
        <property name="font">
         <font>
@@ -344,7 +262,7 @@
       </column>
       <column>
        <property name="text">
-        <string>POS</string>
+        <string>Position</string>
        </property>
        <property name="font">
         <font>
@@ -376,7 +294,7 @@
       </column>
       <column>
        <property name="text">
-        <string>Expires</string>
+        <string>Moral</string>
        </property>
        <property name="font">
         <font>
@@ -390,71 +308,62 @@
         <set>AlignCenter</set>
        </property>
       </column>
-      <item row="0" column="0">
+      <column>
        <property name="text">
-        <string/>
+        <string>Condition</string>
+       </property>
+       <property name="font">
+        <font>
+         <family>Calibri</family>
+         <pointsize>12</pointsize>
+         <weight>75</weight>
+         <bold>true</bold>
+        </font>
        </property>
        <property name="textAlignment">
         <set>AlignCenter</set>
        </property>
-       <property name="flags">
-        <set>ItemIsEnabled</set>
-       </property>
-      </item>
-      <item row="0" column="5">
+      </column>
+      <column>
        <property name="text">
-        <string/>
+        <string>Nationality</string>
+       </property>
+       <property name="font">
+        <font>
+         <family>Calibri</family>
+         <pointsize>12</pointsize>
+         <weight>75</weight>
+         <bold>true</bold>
+        </font>
        </property>
        <property name="textAlignment">
         <set>AlignCenter</set>
        </property>
-       <property name="flags">
-        <set>ItemIsEnabled</set>
-       </property>
-      </item>
-      <item row="0" column="6">
+      </column>
+      <column>
        <property name="text">
-        <string/>
+        <string>   Expires   </string>
+       </property>
+       <property name="font">
+        <font>
+         <family>Calibri</family>
+         <pointsize>12</pointsize>
+         <weight>75</weight>
+         <bold>true</bold>
+        </font>
        </property>
        <property name="textAlignment">
         <set>AlignCenter</set>
        </property>
-       <property name="flags">
-        <set>ItemIsEnabled</set>
-       </property>
-      </item>
-      <item row="1" column="5">
-       <property name="text">
-        <string/>
-       </property>
-       <property name="textAlignment">
-        <set>AlignCenter</set>
-       </property>
-      </item>
-      <item row="1" column="6">
-       <property name="text">
-        <string/>
-       </property>
-       <property name="textAlignment">
-        <set>AlignCenter</set>
-       </property>
-      </item>
-      <item row="3" column="0">
-       <property name="text">
-        <string/>
-       </property>
-       <property name="textAlignment">
-        <set>AlignCenter</set>
-       </property>
-      </item>
+      </column>
      </widget>
-     <widget class="QFrame" name="frame">
+     <widget class="QFrame" name="MessageFrame">
       <property name="geometry">
        <rect>
         <x>10</x>
         <y>110</y>
-        <width>761</width>
-        <height>771</height>
+        <width>891</width>
+        <height>761</height>
        </rect>
       </property>
       <property name="frameShape">
@@ -475,7 +384,7 @@
          <x>10</x>
          <y>20</y>
          <width>251</width>
-         <height>441</height>
+         <height>531</height>
         </rect>
        </property>
        <property name="frameShape">
@@ -505,7 +414,7 @@
           <x>0</x>
           <y>0</y>
           <width>245</width>
-          <height>435</height>
+          <height>525</height>
          </rect>
         </property>
         <widget class="QTableWidget" name="tableWidget">
@@ -514,7 +423,7 @@
            <x>0</x>
            <y>0</y>
            <width>241</width>
-           <height>431</height>
+           <height>521</height>
           </rect>
          </property>
          <property name="editTriggers">
@@ -545,8 +454,8 @@
         <rect>
          <x>270</x>
          <y>20</y>
-         <width>471</width>
-         <height>441</height>
+         <width>601</width>
+         <height>531</height>
         </rect>
        </property>
        <property name="font">
@@ -736,8 +645,8 @@
      <widget class="QLabel" name="TeamNameLabel">
       <property name="geometry">
        <rect>
-        <x>950</x>
-        <y>40</y>
+        <x>740</x>
+        <y>30</y>
         <width>351</width>
         <height>41</height>
        </rect>
@@ -761,13 +670,19 @@
       </property>
      </widget>
      <widget class="QFrame" name="playerArea">
+      <property name="enabled">
+       <bool>true</bool>
+      </property>
       <property name="geometry">
        <rect>
-        <x>1450</x>
+        <x>10</x>
         <y>110</y>
-        <width>421</width>
-        <height>771</height>
+        <width>1861</width>
+        <height>761</height>
        </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(255, 255, 255, 255), stop:1 rgba(255, 255, 255, 255));</string>
       </property>
       <property name="frameShape">
        <enum>QFrame::Box</enum>
@@ -781,14 +696,15 @@
       <widget class="QLabel" name="reflexesLabel">
        <property name="geometry">
         <rect>
-         <x>130</x>
-         <y>140</y>
+         <x>110</x>
+         <y>190</y>
          <width>30</width>
          <height>20</height>
         </rect>
        </property>
        <property name="font">
         <font>
+         <family>Calibri</family>
          <pointsize>12</pointsize>
          <weight>50</weight>
          <bold>false</bold>
@@ -798,15 +714,15 @@
         <string>0</string>
        </property>
        <property name="alignment">
-        <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+        <set>Qt::AlignCenter</set>
        </property>
       </widget>
       <widget class="QLabel" name="label_3">
        <property name="geometry">
         <rect>
          <x>35</x>
-         <y>170</y>
-         <width>100</width>
+         <y>220</y>
+         <width>71</width>
          <height>20</height>
         </rect>
        </property>
@@ -820,14 +736,15 @@
       <widget class="QLabel" name="tacklingLabel">
        <property name="geometry">
         <rect>
-         <x>130</x>
-         <y>170</y>
+         <x>110</x>
+         <y>220</y>
          <width>30</width>
          <height>20</height>
         </rect>
        </property>
        <property name="font">
         <font>
+         <family>Calibri</family>
          <pointsize>12</pointsize>
          <weight>50</weight>
          <bold>false</bold>
@@ -837,15 +754,15 @@
         <string>0</string>
        </property>
        <property name="alignment">
-        <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+        <set>Qt::AlignCenter</set>
        </property>
       </widget>
       <widget class="QLabel" name="label_5">
        <property name="geometry">
         <rect>
          <x>35</x>
-         <y>200</y>
-         <width>100</width>
+         <y>250</y>
+         <width>71</width>
          <height>20</height>
         </rect>
        </property>
@@ -859,14 +776,15 @@
       <widget class="QLabel" name="finishingLabel">
        <property name="geometry">
         <rect>
-         <x>130</x>
-         <y>290</y>
+         <x>110</x>
+         <y>340</y>
          <width>30</width>
          <height>20</height>
         </rect>
        </property>
        <property name="font">
         <font>
+         <family>Calibri</family>
          <pointsize>12</pointsize>
          <weight>50</weight>
          <bold>false</bold>
@@ -876,20 +794,21 @@
         <string>0</string>
        </property>
        <property name="alignment">
-        <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+        <set>Qt::AlignCenter</set>
        </property>
       </widget>
       <widget class="QLabel" name="techniqueLabel">
        <property name="geometry">
         <rect>
-         <x>130</x>
-         <y>230</y>
+         <x>110</x>
+         <y>280</y>
          <width>30</width>
-         <height>20</height>
+         <height>16</height>
         </rect>
        </property>
        <property name="font">
         <font>
+         <family>Calibri</family>
          <pointsize>12</pointsize>
          <weight>50</weight>
          <bold>false</bold>
@@ -899,17 +818,25 @@
         <string>0</string>
        </property>
        <property name="alignment">
-        <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+        <set>Qt::AlignCenter</set>
        </property>
       </widget>
       <widget class="QLabel" name="playerNameLabel">
        <property name="geometry">
         <rect>
          <x>10</x>
-         <y>20</y>
+         <y>10</y>
          <width>391</width>
          <height>20</height>
         </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>Arial</family>
+         <pointsize>12</pointsize>
+         <weight>75</weight>
+         <bold>true</bold>
+        </font>
        </property>
        <property name="text">
         <string>Player Name</string>
@@ -922,8 +849,8 @@
        <property name="geometry">
         <rect>
          <x>35</x>
-         <y>140</y>
-         <width>100</width>
+         <y>190</y>
+         <width>71</width>
          <height>20</height>
         </rect>
        </property>
@@ -938,8 +865,8 @@
        <property name="geometry">
         <rect>
          <x>35</x>
-         <y>290</y>
-         <width>100</width>
+         <y>340</y>
+         <width>71</width>
          <height>20</height>
         </rect>
        </property>
@@ -954,8 +881,8 @@
        <property name="geometry">
         <rect>
          <x>35</x>
-         <y>260</y>
-         <width>100</width>
+         <y>310</y>
+         <width>71</width>
          <height>20</height>
         </rect>
        </property>
@@ -970,8 +897,8 @@
        <property name="geometry">
         <rect>
          <x>35</x>
-         <y>230</y>
-         <width>100</width>
+         <y>280</y>
+         <width>71</width>
          <height>20</height>
         </rect>
        </property>
@@ -985,14 +912,15 @@
       <widget class="QLabel" name="passingLabel">
        <property name="geometry">
         <rect>
-         <x>130</x>
-         <y>200</y>
+         <x>110</x>
+         <y>250</y>
          <width>30</width>
          <height>20</height>
         </rect>
        </property>
        <property name="font">
         <font>
+         <family>Calibri</family>
          <pointsize>12</pointsize>
          <weight>50</weight>
          <bold>false</bold>
@@ -1002,20 +930,21 @@
         <string>0</string>
        </property>
        <property name="alignment">
-        <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+        <set>Qt::AlignCenter</set>
        </property>
       </widget>
       <widget class="QLabel" name="paceLabel">
        <property name="geometry">
         <rect>
-         <x>130</x>
-         <y>260</y>
+         <x>110</x>
+         <y>310</y>
          <width>30</width>
          <height>20</height>
         </rect>
        </property>
        <property name="font">
         <font>
+         <family>Calibri</family>
          <pointsize>12</pointsize>
          <weight>50</weight>
          <bold>false</bold>
@@ -1025,10 +954,34 @@
         <string>0</string>
        </property>
        <property name="alignment">
-        <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+        <set>Qt::AlignCenter</set>
        </property>
       </widget>
       <widget class="QPushButton" name="releasePlayerButton">
+       <property name="geometry">
+        <rect>
+         <x>35</x>
+         <y>450</y>
+         <width>141</width>
+         <height>31</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>Calibri</family>
+         <pointsize>10</pointsize>
+         <weight>75</weight>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(131, 171, 255, 255), stop:1 rgba(255, 255, 255, 255));</string>
+       </property>
+       <property name="text">
+        <string>Release Player</string>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="addTransferListButton">
        <property name="geometry">
         <rect>
          <x>35</x>
@@ -1045,26 +998,8 @@
          <bold>true</bold>
         </font>
        </property>
-       <property name="text">
-        <string>Release Player</string>
-       </property>
-      </widget>
-      <widget class="QPushButton" name="addTransferListButton">
-       <property name="geometry">
-        <rect>
-         <x>35</x>
-         <y>350</y>
-         <width>141</width>
-         <height>31</height>
-        </rect>
-       </property>
-       <property name="font">
-        <font>
-         <family>Calibri</family>
-         <pointsize>10</pointsize>
-         <weight>75</weight>
-         <bold>true</bold>
-        </font>
+       <property name="styleSheet">
+        <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(131, 171, 255, 255), stop:1 rgba(255, 255, 255, 255));</string>
        </property>
        <property name="text">
         <string>Add Transfer List</string>
@@ -1076,8 +1011,14 @@
          <x>35</x>
          <y>560</y>
          <width>351</width>
-         <height>192</height>
+         <height>161</height>
         </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: rgb(202, 202, 202);</string>
+       </property>
+       <property name="horizontalScrollBarPolicy">
+        <enum>Qt::ScrollBarAlwaysOff</enum>
        </property>
        <property name="editTriggers">
         <set>QAbstractItemView::NoEditTriggers</set>
@@ -1085,9 +1026,15 @@
        <attribute name="horizontalHeaderDefaultSectionSize">
         <number>115</number>
        </attribute>
+       <attribute name="horizontalHeaderStretchLastSection">
+        <bool>true</bool>
+       </attribute>
+       <attribute name="verticalHeaderStretchLastSection">
+        <bool>false</bool>
+       </attribute>
        <column>
         <property name="text">
-         <string>Offer Club Name</string>
+         <string>Watching By Club</string>
         </property>
         <property name="font">
          <font>
@@ -1103,7 +1050,7 @@
        </column>
        <column>
         <property name="text">
-         <string>Offer Value</string>
+         <string>Max Offer $</string>
         </property>
         <property name="font">
          <font>
@@ -1119,7 +1066,7 @@
        </column>
        <column>
         <property name="text">
-         <string>Offer Status</string>
+         <string>Status</string>
         </property>
         <property name="font">
          <font>
@@ -1137,14 +1084,22 @@
       <widget class="QLabel" name="label_2">
        <property name="geometry">
         <rect>
-         <x>146</x>
+         <x>116</x>
          <y>520</y>
-         <width>131</width>
+         <width>191</width>
          <height>20</height>
         </rect>
        </property>
+       <property name="font">
+        <font>
+         <family>Arial</family>
+         <pointsize>12</pointsize>
+         <weight>75</weight>
+         <bold>true</bold>
+        </font>
+       </property>
        <property name="text">
-        <string>Transfer Bids</string>
+        <string>Watching for Transfer</string>
        </property>
        <property name="alignment">
         <set>Qt::AlignCenter</set>
@@ -1154,7 +1109,7 @@
        <property name="geometry">
         <rect>
          <x>250</x>
-         <y>350</y>
+         <y>400</y>
          <width>141</width>
          <height>31</height>
         </rect>
@@ -1167,15 +1122,84 @@
          <bold>true</bold>
         </font>
        </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(131, 171, 255, 255), stop:1 rgba(255, 255, 255, 255));</string>
+       </property>
        <property name="text">
-        <string>Offer  Contract</string>
+        <string>Offer New Contract</string>
        </property>
       </widget>
+      <widget class="QLabel" name="playerFace">
+       <property name="geometry">
+        <rect>
+         <x>130</x>
+         <y>40</y>
+         <width>151</width>
+         <height>131</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+      </widget>
+      <widget class="QWidget" name="gridLayoutWidget">
+       <property name="geometry">
+        <rect>
+         <x>1040</x>
+         <y>70</y>
+         <width>321</width>
+         <height>251</height>
+        </rect>
+       </property>
+       <layout class="QGridLayout" name="gridLayout"/>
+      </widget>
      </widget>
+     <widget class="QPushButton" name="pushButton_2">
+      <property name="geometry">
+       <rect>
+        <x>50</x>
+        <y>20</y>
+        <width>101</width>
+        <height>41</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>Calibri</family>
+        <pointsize>12</pointsize>
+        <weight>75</weight>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: qlineargradient(spread:pad, x1:0.482955, y1:0.545, x2:1, y2:0, stop:0 rgba(227, 227, 227, 255), stop:1 rgba(255, 255, 255, 255));</string>
+      </property>
+      <property name="text">
+       <string>Back</string>
+      </property>
+     </widget>
+     <zorder>playerArea</zorder>
+     <zorder>myTeam</zorder>
+     <zorder>MessageFrame</zorder>
+     <zorder>TeamNameLabel</zorder>
+     <zorder>pushButton_2</zorder>
+    </widget>
+    <widget class="QWidget" name="tab_6">
+     <attribute name="title">
+      <string>Tactics</string>
+     </attribute>
+    </widget>
+    <widget class="QWidget" name="tab_9">
+     <attribute name="title">
+      <string>Training</string>
+     </attribute>
     </widget>
     <widget class="QWidget" name="tab_5">
      <attribute name="title">
-      <string>Board</string>
+      <string>Scout</string>
      </attribute>
      <widget class="QTableWidget" name="transferListTable">
       <property name="geometry">
@@ -1186,15 +1210,23 @@
         <height>241</height>
        </rect>
       </property>
+      <property name="horizontalScrollBarPolicy">
+       <enum>Qt::ScrollBarAlwaysOff</enum>
+      </property>
       <property name="editTriggers">
        <set>QAbstractItemView::NoEditTriggers</set>
       </property>
+      <property name="showGrid">
+       <bool>false</bool>
+      </property>
       <column>
        <property name="text">
-        <string>--Player Full Name--</string>
+        <string>   Player Full Name   </string>
        </property>
        <property name="font">
         <font>
+         <family>Calibri</family>
+         <pointsize>10</pointsize>
          <weight>75</weight>
          <bold>true</bold>
         </font>
@@ -1209,6 +1241,8 @@
        </property>
        <property name="font">
         <font>
+         <family>Calibri</family>
+         <pointsize>10</pointsize>
          <weight>75</weight>
          <bold>true</bold>
         </font>
@@ -1223,6 +1257,8 @@
        </property>
        <property name="font">
         <font>
+         <family>Calibri</family>
+         <pointsize>10</pointsize>
          <weight>75</weight>
          <bold>true</bold>
         </font>
@@ -1237,6 +1273,24 @@
        </property>
        <property name="font">
         <font>
+         <family>Calibri</family>
+         <pointsize>10</pointsize>
+         <weight>75</weight>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="textAlignment">
+        <set>AlignCenter</set>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>Moral</string>
+       </property>
+       <property name="font">
+        <font>
+         <family>Calibri</family>
+         <pointsize>10</pointsize>
          <weight>75</weight>
          <bold>true</bold>
         </font>
@@ -1265,18 +1319,24 @@
      <widget class="QTableWidget" name="scoutListTable">
       <property name="geometry">
        <rect>
-        <x>1380</x>
+        <x>1370</x>
         <y>350</y>
-        <width>491</width>
+        <width>501</width>
         <height>521</height>
        </rect>
+      </property>
+      <property name="horizontalScrollBarPolicy">
+       <enum>Qt::ScrollBarAlwaysOff</enum>
       </property>
       <property name="editTriggers">
        <set>QAbstractItemView::NoEditTriggers</set>
       </property>
+      <property name="showGrid">
+       <bool>false</bool>
+      </property>
       <column>
        <property name="text">
-        <string>--Player Full Name--</string>
+        <string>   Player Full Name   </string>
        </property>
        <property name="font">
         <font>
@@ -1362,6 +1422,16 @@
       </property>
      </widget>
     </widget>
+    <widget class="QWidget" name="tab_7">
+     <attribute name="title">
+      <string>Board</string>
+     </attribute>
+    </widget>
+    <widget class="QWidget" name="tab_8">
+     <attribute name="title">
+      <string>Manager</string>
+     </attribute>
+    </widget>
     <widget class="QWidget" name="tab">
      <attribute name="title">
       <string>Match</string>
@@ -1371,7 +1441,7 @@
        <rect>
         <x>40</x>
         <y>80</y>
-        <width>321</width>
+        <width>301</width>
         <height>351</height>
        </rect>
       </property>
@@ -1480,13 +1550,13 @@
       </row>
       <column>
        <property name="text">
-        <string>Player Name</string>
+        <string>     Player Name     </string>
        </property>
        <property name="font">
         <font>
          <pointsize>10</pointsize>
-         <weight>50</weight>
-         <bold>false</bold>
+         <weight>75</weight>
+         <bold>true</bold>
         </font>
        </property>
        <property name="textAlignment">
@@ -1500,6 +1570,8 @@
        <property name="font">
         <font>
          <pointsize>10</pointsize>
+         <weight>75</weight>
+         <bold>true</bold>
         </font>
        </property>
        <property name="textAlignment">
@@ -1513,6 +1585,8 @@
        <property name="font">
         <font>
          <pointsize>10</pointsize>
+         <weight>75</weight>
+         <bold>true</bold>
         </font>
        </property>
        <property name="textAlignment">
@@ -1580,6 +1654,9 @@
        </property>
       </item>
       <item row="3" column="0">
+       <property name="text">
+        <string/>
+       </property>
        <property name="textAlignment">
         <set>AlignCenter</set>
        </property>
@@ -1597,7 +1674,7 @@
       <property name="geometry">
        <rect>
         <x>900</x>
-        <y>20</y>
+        <y>60</y>
         <width>101</width>
         <height>41</height>
        </rect>
@@ -1611,7 +1688,7 @@
        <rect>
         <x>1520</x>
         <y>80</y>
-        <width>321</width>
+        <width>301</width>
         <height>351</height>
        </rect>
       </property>
@@ -1693,11 +1770,13 @@
       </row>
       <column>
        <property name="text">
-        <string>Player Name</string>
+        <string>    Player Name    </string>
        </property>
        <property name="font">
         <font>
          <pointsize>10</pointsize>
+         <weight>75</weight>
+         <bold>true</bold>
         </font>
        </property>
        <property name="textAlignment">
@@ -1711,7 +1790,12 @@
        <property name="font">
         <font>
          <pointsize>10</pointsize>
+         <weight>75</weight>
+         <bold>true</bold>
         </font>
+       </property>
+       <property name="textAlignment">
+        <set>AlignCenter</set>
        </property>
       </column>
       <column>
@@ -1721,16 +1805,21 @@
        <property name="font">
         <font>
          <pointsize>10</pointsize>
+         <weight>75</weight>
+         <bold>true</bold>
         </font>
+       </property>
+       <property name="textAlignment">
+        <set>AlignCenter</set>
        </property>
       </column>
      </widget>
      <widget class="QLabel" name="hometeam">
       <property name="geometry">
        <rect>
-        <x>110</x>
+        <x>40</x>
         <y>30</y>
-        <width>151</width>
+        <width>301</width>
         <height>20</height>
        </rect>
       </property>
@@ -1755,9 +1844,9 @@
      <widget class="QLabel" name="awayteam">
       <property name="geometry">
        <rect>
-        <x>1610</x>
+        <x>1520</x>
         <y>30</y>
-        <width>151</width>
+        <width>301</width>
         <height>20</height>
        </rect>
       </property>
@@ -1783,7 +1872,7 @@
       <property name="geometry">
        <rect>
         <x>620</x>
-        <y>30</y>
+        <y>70</y>
         <width>151</width>
         <height>20</height>
        </rect>
@@ -1810,7 +1899,7 @@
       <property name="geometry">
        <rect>
         <x>1100</x>
-        <y>30</y>
+        <y>70</y>
         <width>151</width>
         <height>20</height>
        </rect>
@@ -1833,25 +1922,927 @@
        <set>Qt::AlignCenter</set>
       </property>
      </widget>
-     <widget class="QLabel" name="match">
+     <widget class="QLabel" name="match_events">
       <property name="geometry">
        <rect>
-        <x>360</x>
-        <y>830</y>
-        <width>1171</width>
-        <height>20</height>
+        <x>340</x>
+        <y>800</y>
+        <width>1181</width>
+        <height>41</height>
        </rect>
       </property>
       <property name="font">
        <font>
         <family>Calibri</family>
-        <pointsize>16</pointsize>
+        <pointsize>18</pointsize>
         <weight>75</weight>
         <bold>true</bold>
        </font>
       </property>
       <property name="text">
        <string>TextLabel</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
+      </property>
+     </widget>
+     <widget class="QTableWidget" name="team_left_sub">
+      <property name="geometry">
+       <rect>
+        <x>40</x>
+        <y>510</y>
+        <width>301</width>
+        <height>301</height>
+       </rect>
+      </property>
+      <property name="verticalScrollBarPolicy">
+       <enum>Qt::ScrollBarAlwaysOff</enum>
+      </property>
+      <property name="horizontalScrollBarPolicy">
+       <enum>Qt::ScrollBarAlwaysOff</enum>
+      </property>
+      <property name="sizeAdjustPolicy">
+       <enum>QAbstractScrollArea::AdjustToContentsOnFirstShow</enum>
+      </property>
+      <property name="editTriggers">
+       <set>QAbstractItemView::NoEditTriggers</set>
+      </property>
+      <property name="selectionMode">
+       <enum>QAbstractItemView::NoSelection</enum>
+      </property>
+      <property name="showGrid">
+       <bool>true</bool>
+      </property>
+      <property name="gridStyle">
+       <enum>Qt::SolidLine</enum>
+      </property>
+      <property name="rowCount">
+       <number>9</number>
+      </property>
+      <property name="columnCount">
+       <number>3</number>
+      </property>
+      <attribute name="horizontalHeaderVisible">
+       <bool>false</bool>
+      </attribute>
+      <attribute name="horizontalHeaderCascadingSectionResizes">
+       <bool>false</bool>
+      </attribute>
+      <attribute name="horizontalHeaderDefaultSectionSize">
+       <number>100</number>
+      </attribute>
+      <attribute name="verticalHeaderVisible">
+       <bool>false</bool>
+      </attribute>
+      <attribute name="verticalHeaderCascadingSectionResizes">
+       <bool>false</bool>
+      </attribute>
+      <attribute name="verticalHeaderMinimumSectionSize">
+       <number>23</number>
+      </attribute>
+      <attribute name="verticalHeaderDefaultSectionSize">
+       <number>30</number>
+      </attribute>
+      <row>
+       <property name="text">
+        <string>1</string>
+       </property>
+      </row>
+      <row>
+       <property name="text">
+        <string>2</string>
+       </property>
+      </row>
+      <row>
+       <property name="text">
+        <string>3</string>
+       </property>
+      </row>
+      <row>
+       <property name="text">
+        <string>4</string>
+       </property>
+      </row>
+      <row>
+       <property name="text">
+        <string>5</string>
+       </property>
+      </row>
+      <row>
+       <property name="text">
+        <string>6</string>
+       </property>
+      </row>
+      <row>
+       <property name="text">
+        <string>7</string>
+       </property>
+      </row>
+      <row/>
+      <row/>
+      <column>
+       <property name="text">
+        <string>     Player Name     </string>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>10</pointsize>
+         <weight>75</weight>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="textAlignment">
+        <set>AlignCenter</set>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>Position</string>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>10</pointsize>
+         <weight>75</weight>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="textAlignment">
+        <set>AlignCenter</set>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>Form</string>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>10</pointsize>
+         <weight>75</weight>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="textAlignment">
+        <set>AlignCenter</set>
+       </property>
+      </column>
+      <item row="0" column="0">
+       <property name="text">
+        <string/>
+       </property>
+       <property name="textAlignment">
+        <set>AlignCenter</set>
+       </property>
+       <property name="flags">
+        <set>ItemIsEnabled</set>
+       </property>
+      </item>
+      <item row="0" column="1">
+       <property name="text">
+        <string/>
+       </property>
+       <property name="textAlignment">
+        <set>AlignCenter</set>
+       </property>
+       <property name="flags">
+        <set>ItemIsEnabled</set>
+       </property>
+      </item>
+      <item row="0" column="2">
+       <property name="text">
+        <string/>
+       </property>
+       <property name="textAlignment">
+        <set>AlignCenter</set>
+       </property>
+       <property name="flags">
+        <set>ItemIsEnabled</set>
+       </property>
+      </item>
+      <item row="1" column="0">
+       <property name="text">
+        <string/>
+       </property>
+       <property name="textAlignment">
+        <set>AlignCenter</set>
+       </property>
+       <property name="flags">
+        <set>ItemIsEnabled</set>
+       </property>
+      </item>
+      <item row="1" column="1">
+       <property name="text">
+        <string/>
+       </property>
+       <property name="textAlignment">
+        <set>AlignCenter</set>
+       </property>
+      </item>
+      <item row="1" column="2">
+       <property name="text">
+        <string/>
+       </property>
+       <property name="textAlignment">
+        <set>AlignCenter</set>
+       </property>
+      </item>
+      <item row="3" column="0">
+       <property name="text">
+        <string/>
+       </property>
+       <property name="textAlignment">
+        <set>AlignCenter</set>
+       </property>
+      </item>
+     </widget>
+     <widget class="QTableWidget" name="team_right_sub">
+      <property name="geometry">
+       <rect>
+        <x>1520</x>
+        <y>510</y>
+        <width>301</width>
+        <height>301</height>
+       </rect>
+      </property>
+      <property name="verticalScrollBarPolicy">
+       <enum>Qt::ScrollBarAlwaysOff</enum>
+      </property>
+      <property name="horizontalScrollBarPolicy">
+       <enum>Qt::ScrollBarAlwaysOff</enum>
+      </property>
+      <property name="sizeAdjustPolicy">
+       <enum>QAbstractScrollArea::AdjustToContentsOnFirstShow</enum>
+      </property>
+      <property name="editTriggers">
+       <set>QAbstractItemView::NoEditTriggers</set>
+      </property>
+      <property name="selectionMode">
+       <enum>QAbstractItemView::NoSelection</enum>
+      </property>
+      <property name="showGrid">
+       <bool>true</bool>
+      </property>
+      <property name="gridStyle">
+       <enum>Qt::SolidLine</enum>
+      </property>
+      <property name="rowCount">
+       <number>9</number>
+      </property>
+      <property name="columnCount">
+       <number>3</number>
+      </property>
+      <attribute name="horizontalHeaderVisible">
+       <bool>false</bool>
+      </attribute>
+      <attribute name="horizontalHeaderCascadingSectionResizes">
+       <bool>false</bool>
+      </attribute>
+      <attribute name="horizontalHeaderDefaultSectionSize">
+       <number>100</number>
+      </attribute>
+      <attribute name="verticalHeaderVisible">
+       <bool>false</bool>
+      </attribute>
+      <attribute name="verticalHeaderCascadingSectionResizes">
+       <bool>false</bool>
+      </attribute>
+      <attribute name="verticalHeaderMinimumSectionSize">
+       <number>23</number>
+      </attribute>
+      <attribute name="verticalHeaderDefaultSectionSize">
+       <number>30</number>
+      </attribute>
+      <row>
+       <property name="text">
+        <string>1</string>
+       </property>
+      </row>
+      <row>
+       <property name="text">
+        <string>2</string>
+       </property>
+      </row>
+      <row>
+       <property name="text">
+        <string>3</string>
+       </property>
+      </row>
+      <row>
+       <property name="text">
+        <string>4</string>
+       </property>
+      </row>
+      <row>
+       <property name="text">
+        <string>5</string>
+       </property>
+      </row>
+      <row>
+       <property name="text">
+        <string>6</string>
+       </property>
+      </row>
+      <row>
+       <property name="text">
+        <string>7</string>
+       </property>
+      </row>
+      <row/>
+      <row/>
+      <column>
+       <property name="text">
+        <string>     Player Name     </string>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>10</pointsize>
+         <weight>75</weight>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="textAlignment">
+        <set>AlignCenter</set>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>Position</string>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>10</pointsize>
+         <weight>75</weight>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="textAlignment">
+        <set>AlignCenter</set>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>Form</string>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>10</pointsize>
+         <weight>75</weight>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="textAlignment">
+        <set>AlignCenter</set>
+       </property>
+      </column>
+      <item row="0" column="0">
+       <property name="text">
+        <string/>
+       </property>
+       <property name="textAlignment">
+        <set>AlignCenter</set>
+       </property>
+       <property name="flags">
+        <set>ItemIsEnabled</set>
+       </property>
+      </item>
+      <item row="0" column="1">
+       <property name="text">
+        <string/>
+       </property>
+       <property name="textAlignment">
+        <set>AlignCenter</set>
+       </property>
+       <property name="flags">
+        <set>ItemIsEnabled</set>
+       </property>
+      </item>
+      <item row="0" column="2">
+       <property name="text">
+        <string/>
+       </property>
+       <property name="textAlignment">
+        <set>AlignCenter</set>
+       </property>
+       <property name="flags">
+        <set>ItemIsEnabled</set>
+       </property>
+      </item>
+      <item row="1" column="0">
+       <property name="text">
+        <string/>
+       </property>
+       <property name="textAlignment">
+        <set>AlignCenter</set>
+       </property>
+       <property name="flags">
+        <set>ItemIsEnabled</set>
+       </property>
+      </item>
+      <item row="1" column="1">
+       <property name="text">
+        <string/>
+       </property>
+       <property name="textAlignment">
+        <set>AlignCenter</set>
+       </property>
+      </item>
+      <item row="1" column="2">
+       <property name="text">
+        <string/>
+       </property>
+       <property name="textAlignment">
+        <set>AlignCenter</set>
+       </property>
+      </item>
+      <item row="3" column="0">
+       <property name="text">
+        <string/>
+       </property>
+       <property name="textAlignment">
+        <set>AlignCenter</set>
+       </property>
+      </item>
+     </widget>
+     <widget class="QLabel" name="hometeam_2">
+      <property name="geometry">
+       <rect>
+        <x>40</x>
+        <y>470</y>
+        <width>301</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>Calibri</family>
+        <pointsize>14</pointsize>
+        <weight>75</weight>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="text">
+       <string>Yedekler</string>
+      </property>
+      <property name="scaledContents">
+       <bool>false</bool>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
+      </property>
+     </widget>
+     <widget class="QLabel" name="hometeam_3">
+      <property name="geometry">
+       <rect>
+        <x>1520</x>
+        <y>470</y>
+        <width>301</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>Calibri</family>
+        <pointsize>14</pointsize>
+        <weight>75</weight>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="text">
+       <string>Yedekler</string>
+      </property>
+      <property name="scaledContents">
+       <bool>false</bool>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
+      </property>
+     </widget>
+     <widget class="QLabel" name="match_time">
+      <property name="geometry">
+       <rect>
+        <x>870</x>
+        <y>10</y>
+        <width>151</width>
+        <height>41</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>Calibri</family>
+        <pointsize>22</pointsize>
+        <weight>75</weight>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="text">
+       <string>00</string>
+      </property>
+      <property name="scaledContents">
+       <bool>false</bool>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
+      </property>
+     </widget>
+     <widget class="QLabel" name="hometeam_goal_2">
+      <property name="geometry">
+       <rect>
+        <x>870</x>
+        <y>370</y>
+        <width>151</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>Calibri</family>
+        <pointsize>12</pointsize>
+        <weight>75</weight>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="text">
+       <string>Formation</string>
+      </property>
+      <property name="scaledContents">
+       <bool>false</bool>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
+      </property>
+     </widget>
+     <widget class="QLabel" name="hometeam_goal_3">
+      <property name="geometry">
+       <rect>
+        <x>870</x>
+        <y>400</y>
+        <width>151</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>Calibri</family>
+        <pointsize>12</pointsize>
+        <weight>75</weight>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="text">
+       <string>Game Style</string>
+      </property>
+      <property name="scaledContents">
+       <bool>false</bool>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
+      </property>
+     </widget>
+     <widget class="QLabel" name="hometeam_goal_4">
+      <property name="geometry">
+       <rect>
+        <x>870</x>
+        <y>430</y>
+        <width>151</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>Calibri</family>
+        <pointsize>12</pointsize>
+        <weight>75</weight>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="text">
+       <string>Tackling</string>
+      </property>
+      <property name="scaledContents">
+       <bool>false</bool>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
+      </property>
+     </widget>
+     <widget class="QLabel" name="hometeam_goal_5">
+      <property name="geometry">
+       <rect>
+        <x>870</x>
+        <y>460</y>
+        <width>151</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>Calibri</family>
+        <pointsize>12</pointsize>
+        <weight>75</weight>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="text">
+       <string>Long Shots</string>
+      </property>
+      <property name="scaledContents">
+       <bool>false</bool>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
+      </property>
+     </widget>
+     <widget class="QLabel" name="hometeam_goal_6">
+      <property name="geometry">
+       <rect>
+        <x>870</x>
+        <y>490</y>
+        <width>151</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>Calibri</family>
+        <pointsize>12</pointsize>
+        <weight>75</weight>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="text">
+       <string>Attack Position</string>
+      </property>
+      <property name="scaledContents">
+       <bool>false</bool>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
+      </property>
+     </widget>
+     <widget class="QLabel" name="away_gamestyle">
+      <property name="geometry">
+       <rect>
+        <x>1100</x>
+        <y>400</y>
+        <width>151</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>Calibri</family>
+        <pointsize>12</pointsize>
+        <weight>50</weight>
+        <bold>false</bold>
+       </font>
+      </property>
+      <property name="text">
+       <string>null</string>
+      </property>
+      <property name="scaledContents">
+       <bool>false</bool>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
+      </property>
+     </widget>
+     <widget class="QLabel" name="away_formation">
+      <property name="geometry">
+       <rect>
+        <x>1100</x>
+        <y>370</y>
+        <width>151</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>Calibri</family>
+        <pointsize>12</pointsize>
+        <weight>50</weight>
+        <bold>false</bold>
+       </font>
+      </property>
+      <property name="text">
+       <string>null</string>
+      </property>
+      <property name="scaledContents">
+       <bool>false</bool>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
+      </property>
+     </widget>
+     <widget class="QLabel" name="away_longshot">
+      <property name="geometry">
+       <rect>
+        <x>1100</x>
+        <y>460</y>
+        <width>151</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>Calibri</family>
+        <pointsize>12</pointsize>
+        <weight>50</weight>
+        <bold>false</bold>
+       </font>
+      </property>
+      <property name="text">
+       <string>null</string>
+      </property>
+      <property name="scaledContents">
+       <bool>false</bool>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
+      </property>
+     </widget>
+     <widget class="QLabel" name="away_attackposition">
+      <property name="geometry">
+       <rect>
+        <x>1100</x>
+        <y>490</y>
+        <width>151</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>Calibri</family>
+        <pointsize>12</pointsize>
+        <weight>50</weight>
+        <bold>false</bold>
+       </font>
+      </property>
+      <property name="text">
+       <string>null</string>
+      </property>
+      <property name="scaledContents">
+       <bool>false</bool>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
+      </property>
+     </widget>
+     <widget class="QLabel" name="away_tackling">
+      <property name="geometry">
+       <rect>
+        <x>1100</x>
+        <y>430</y>
+        <width>151</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>Calibri</family>
+        <pointsize>12</pointsize>
+        <weight>50</weight>
+        <bold>false</bold>
+       </font>
+      </property>
+      <property name="text">
+       <string>null</string>
+      </property>
+      <property name="scaledContents">
+       <bool>false</bool>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
+      </property>
+     </widget>
+     <widget class="QLabel" name="home_attackposition">
+      <property name="geometry">
+       <rect>
+        <x>620</x>
+        <y>490</y>
+        <width>151</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>Calibri</family>
+        <pointsize>12</pointsize>
+        <weight>50</weight>
+        <bold>false</bold>
+       </font>
+      </property>
+      <property name="text">
+       <string>null</string>
+      </property>
+      <property name="scaledContents">
+       <bool>false</bool>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
+      </property>
+     </widget>
+     <widget class="QLabel" name="home_tackling">
+      <property name="geometry">
+       <rect>
+        <x>620</x>
+        <y>430</y>
+        <width>151</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>Calibri</family>
+        <pointsize>12</pointsize>
+        <weight>50</weight>
+        <bold>false</bold>
+       </font>
+      </property>
+      <property name="text">
+       <string>null</string>
+      </property>
+      <property name="scaledContents">
+       <bool>false</bool>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
+      </property>
+     </widget>
+     <widget class="QLabel" name="home_longshot">
+      <property name="geometry">
+       <rect>
+        <x>620</x>
+        <y>460</y>
+        <width>151</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>Calibri</family>
+        <pointsize>12</pointsize>
+        <weight>50</weight>
+        <bold>false</bold>
+       </font>
+      </property>
+      <property name="text">
+       <string>null</string>
+      </property>
+      <property name="scaledContents">
+       <bool>false</bool>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
+      </property>
+     </widget>
+     <widget class="QLabel" name="home_gamestyle">
+      <property name="geometry">
+       <rect>
+        <x>620</x>
+        <y>400</y>
+        <width>151</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>Calibri</family>
+        <pointsize>12</pointsize>
+        <weight>50</weight>
+        <bold>false</bold>
+       </font>
+      </property>
+      <property name="text">
+       <string>null</string>
+      </property>
+      <property name="scaledContents">
+       <bool>false</bool>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
+      </property>
+     </widget>
+     <widget class="QLabel" name="home_formation">
+      <property name="geometry">
+       <rect>
+        <x>620</x>
+        <y>370</y>
+        <width>151</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>Calibri</family>
+        <pointsize>12</pointsize>
+        <weight>50</weight>
+        <bold>false</bold>
+       </font>
+      </property>
+      <property name="text">
+       <string>null</string>
+      </property>
+      <property name="scaledContents">
+       <bool>false</bool>
       </property>
       <property name="alignment">
        <set>Qt::AlignCenter</set>
@@ -1878,6 +2869,9 @@
         <weight>75</weight>
         <bold>true</bold>
        </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: qlineargradient(spread:pad, x1:0.482955, y1:0.545, x2:1, y2:0, stop:0 rgba(227, 227, 227, 255), stop:1 rgba(255, 255, 255, 255));</string>
       </property>
       <property name="currentIndex">
        <number>-1</number>
@@ -1909,7 +2903,7 @@
       </attribute>
       <column>
        <property name="text">
-        <string>-- Club Name --</string>
+        <string>   Club Name   </string>
        </property>
        <property name="font">
         <font>
@@ -2378,7 +3372,7 @@
        <enum>Qt::ScrollBarAsNeeded</enum>
       </property>
       <property name="horizontalScrollBarPolicy">
-       <enum>Qt::ScrollBarAsNeeded</enum>
+       <enum>Qt::ScrollBarAlwaysOff</enum>
       </property>
       <property name="editTriggers">
        <set>QAbstractItemView::NoEditTriggers</set>
@@ -2396,7 +3390,7 @@
        <number>0</number>
       </property>
       <property name="columnCount">
-       <number>15</number>
+       <number>16</number>
       </property>
       <attribute name="horizontalHeaderShowSortIndicator" stdset="0">
        <bool>true</bool>
@@ -2438,6 +3432,22 @@
       </column>
       <column>
        <property name="text">
+        <string>Nationality</string>
+       </property>
+       <property name="font">
+        <font>
+         <family>Calibri</family>
+         <pointsize>12</pointsize>
+         <weight>75</weight>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="textAlignment">
+        <set>AlignCenter</set>
+       </property>
+      </column>
+      <column>
+       <property name="text">
         <string>Age</string>
        </property>
        <property name="font">
@@ -2454,7 +3464,7 @@
       </column>
       <column>
        <property name="text">
-        <string>Monthly Wage</string>
+        <string>  Wage  </string>
        </property>
        <property name="font">
         <font>
@@ -2534,7 +3544,7 @@
       </column>
       <column>
        <property name="text">
-        <string>Contract Expires</string>
+        <string>  Expires  </string>
        </property>
        <property name="font">
         <font>
@@ -2645,138 +3655,209 @@
        </property>
       </column>
      </widget>
-     <widget class="QPushButton" name="pushButton">
+     <widget class="QGroupBox" name="groupBox">
       <property name="geometry">
        <rect>
-        <x>100</x>
-        <y>630</y>
-        <width>111</width>
-        <height>41</height>
+        <x>20</x>
+        <y>130</y>
+        <width>301</width>
+        <height>501</height>
        </rect>
       </property>
-      <property name="text">
-       <string>Search</string>
+      <property name="font">
+       <font>
+        <weight>75</weight>
+        <bold>true</bold>
+       </font>
       </property>
+      <property name="title">
+       <string>Player Filter</string>
+      </property>
+      <widget class="QPushButton" name="pushButton">
+       <property name="geometry">
+        <rect>
+         <x>90</x>
+         <y>440</y>
+         <width>111</width>
+         <height>41</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Search</string>
+       </property>
+      </widget>
+      <widget class="QComboBox" name="PositionComboBox">
+       <property name="geometry">
+        <rect>
+         <x>130</x>
+         <y>250</y>
+         <width>69</width>
+         <height>22</height>
+        </rect>
+       </property>
+       <item>
+        <property name="text">
+         <string>ALL</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>GK</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>DR</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>DL</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>DC</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>AML</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>AMR</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>MC</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>AMC</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>FC</string>
+        </property>
+       </item>
+      </widget>
+      <widget class="QLabel" name="label">
+       <property name="geometry">
+        <rect>
+         <x>40</x>
+         <y>250</y>
+         <width>81</width>
+         <height>16</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>Arial</family>
+         <pointsize>12</pointsize>
+         <weight>50</weight>
+         <bold>false</bold>
+        </font>
+       </property>
+       <property name="text">
+        <string>Position :</string>
+       </property>
+      </widget>
+      <widget class="QCheckBox" name="TransferListCheckBox">
+       <property name="geometry">
+        <rect>
+         <x>40</x>
+         <y>160</y>
+         <width>131</width>
+         <height>17</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>Arial</family>
+         <pointsize>12</pointsize>
+         <weight>50</weight>
+         <bold>false</bold>
+        </font>
+       </property>
+       <property name="text">
+        <string>Transfer List</string>
+       </property>
+      </widget>
+      <widget class="QCheckBox" name="InterestedCheckBox">
+       <property name="geometry">
+        <rect>
+         <x>40</x>
+         <y>90</y>
+         <width>131</width>
+         <height>17</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>Arial</family>
+         <pointsize>12</pointsize>
+         <weight>50</weight>
+         <bold>false</bold>
+        </font>
+       </property>
+       <property name="text">
+        <string>Interested</string>
+       </property>
+      </widget>
+      <widget class="QCheckBox" name="freePlayersCheckbox">
+       <property name="geometry">
+        <rect>
+         <x>40</x>
+         <y>190</y>
+         <width>131</width>
+         <height>17</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>Arial</family>
+         <pointsize>12</pointsize>
+         <weight>50</weight>
+         <bold>false</bold>
+        </font>
+       </property>
+       <property name="text">
+        <string>Free Players</string>
+       </property>
+      </widget>
      </widget>
-     <widget class="QCheckBox" name="TransferListCheckBox">
-      <property name="geometry">
-       <rect>
-        <x>30</x>
-        <y>150</y>
-        <width>131</width>
-        <height>17</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Transfer List</string>
-      </property>
-     </widget>
-     <widget class="QComboBox" name="PositionComboBox">
-      <property name="geometry">
-       <rect>
-        <x>120</x>
-        <y>240</y>
-        <width>69</width>
-        <height>22</height>
-       </rect>
-      </property>
-      <item>
-       <property name="text">
-        <string>ALL</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>GK</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>DR</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>DL</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>DC</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>AML</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>AMR</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>MC</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>AMC</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>ST</string>
-       </property>
-      </item>
-     </widget>
-     <widget class="QLabel" name="label">
-      <property name="geometry">
-       <rect>
-        <x>30</x>
-        <y>240</y>
-        <width>91</width>
-        <height>16</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Position :</string>
-      </property>
-     </widget>
-     <widget class="QCheckBox" name="freePlayersCheckbox">
-      <property name="geometry">
-       <rect>
-        <x>30</x>
-        <y>180</y>
-        <width>131</width>
-        <height>17</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Free Players</string>
-      </property>
-     </widget>
-     <widget class="QCheckBox" name="InterestedCheckBox">
-      <property name="geometry">
-       <rect>
-        <x>30</x>
-        <y>80</y>
-        <width>131</width>
-        <height>17</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Interested</string>
-      </property>
-     </widget>
+    </widget>
+    <widget class="QWidget" name="tab_10">
+     <attribute name="title">
+      <string>WorldCup</string>
+     </attribute>
+    </widget>
+    <widget class="QWidget" name="tab_11">
+     <attribute name="title">
+      <string>ChampionShip</string>
+     </attribute>
+    </widget>
+    <widget class="QWidget" name="tab_12">
+     <attribute name="title">
+      <string>UEFA</string>
+     </attribute>
+    </widget>
+    <widget class="QWidget" name="tab_2">
+     <attribute name="title">
+      <string>Youth</string>
+     </attribute>
     </widget>
    </widget>
    <widget class="QLabel" name="Datelabel">
     <property name="geometry">
      <rect>
-      <x>890</x>
-      <y>10</y>
+      <x>1560</x>
+      <y>20</y>
       <width>141</width>
       <height>31</height>
      </rect>
@@ -2812,6 +3893,9 @@
       <weight>75</weight>
       <bold>true</bold>
      </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: qlineargradient(spread:pad, x1:0.482955, y1:0.545, x2:1, y2:0, stop:0 rgba(227, 227, 227, 255), stop:1 rgba(255, 255, 255, 255));</string>
     </property>
     <property name="text">
      <string>Continue</string>
